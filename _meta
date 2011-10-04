@@ -1,0 +1,9 @@
+<package project="Mer:Trunk:Base" name="iproute">
+  <title>Advanced IP routing and network device configuration tools</title>
+  <description>The iproute package contains networking utilities (ip and rtmon, for
+example) which are designed to use the advanced networking
+capabilities of the Linux 2.4.x and 2.6.x kernel.
+
+</description>
+  <url>http://linux-net.osdl.org/index.php/Iproute2</url>
+</package>

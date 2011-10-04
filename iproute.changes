@@ -1,0 +1,23 @@
+* Thu Sep 01 2011 Carsten Munk <carsten@maemo.org> - 2.6.38
+- Drop LaTeX dependancies
+
+* Mon Jun 27 2011 Yu <yu.a.wang@intel.com> 2.6.38
+- upgrade to the latest version
+
+* Fri Nov 12 2010 Anas Nashif <nashif@linux.intel.com> - 2.6.31
+- Do not do parallel builds, it fails on arm (bmc #9695)
+
+* Sat Apr 10 2010 Anas Nashif <anas.nashif@intel.com> - 2.6.31
+- Fixed rpmlint errors
+
+* Mon Jan 11 2010 Arjan van de Ven <arjan@linux.intel.com> 2.6.31
+- iproute does not Require: iptables, it just conflicts: with an older one
+- move examples to the -doc package
+- upgrade to 2.6.31
+
+* Thu Oct 01 2009 Anas Nashif <anas.nashif@intel.com> - 2.6.29
+- Update to 2.6.29
+
+* Tue Feb 17 2009 Martin Xu <martin.xu@intel.com> 2.6.28
+- upgrade to 2.6.28 basing on Fedora package
+
