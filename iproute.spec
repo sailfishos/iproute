@@ -11,7 +11,7 @@ Source: http://developer.osdl.org/dev/iproute2/download/iproute2-%{version}.tar.
 URL:	http://linux-net.osdl.org/index.php/Iproute2
 Patch4: iproute2-2.6.25-segfault.patch
 Patch5: iproute2-sharepath.patch
-
+Patch6: iproute2-2.6.38-noarpd.patch
 License: GPLv2+
 BuildRequires: flex  psutils db4-devel bison
 # introduction new iptables (xtables) which broke ipt
@@ -34,6 +34,7 @@ The iproute documentation contains howtos and examples of settings.
 %setup -q -n iproute2-%{version}
 %patch4 -p1 -b .seg
 %patch5 -p1 -b .share
+%patch6 -p1 -b .noarpd
 
 %build
 export LIBDIR=/%{_libdir}
@@ -55,7 +56,7 @@ mkdir -p $RPM_BUILD_ROOT/sbin \
 	$RPM_BUILD_ROOT%{_libdir}/tc
 
 install -m 755 ip/ip ip/ifcfg ip/rtmon tc/tc $RPM_BUILD_ROOT/sbin
-install -m 755 misc/ss misc/nstat misc/rtacct misc/lnstat misc/arpd $RPM_BUILD_ROOT%{_sbindir}
+install -m 755 misc/ss misc/nstat misc/rtacct misc/lnstat $RPM_BUILD_ROOT%{_sbindir}
 #netem is static
 install -m 644 netem/normal.dist netem/pareto.dist netem/paretonormal.dist $RPM_BUILD_ROOT%{_datadir}/tc
 install -m 644 man/man8/*.8 $RPM_BUILD_ROOT/%{_mandir}/man8
