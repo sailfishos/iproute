@@ -3,15 +3,21 @@
 
 Summary: Advanced IP routing and network device configuration tools
 Name: iproute
-Version: 2.6.38
-Release: 4
+Version: 3.7.0
+Release: 1
 Group: Applications/System
-Source: http://developer.osdl.org/dev/iproute2/download/iproute2-%{version}.tar.bz2
-#Source1: iproute-doc-2.6.22.tar.gz
-URL:	http://linux-net.osdl.org/index.php/Iproute2
-Patch4: iproute2-2.6.25-segfault.patch
-Patch5: iproute2-sharepath.patch
-Patch6: iproute2-2.6.38-noarpd.patch
+Source: http://kernel.org/pub/linux/utils/net/%{name}2/%{name}2-%{version}.tar.bz2
+URL:	http://kernel.org/pub/linux/utils/net/%{name}2/
+Patch1: iproute2-3.4.0-kernel.patch
+Patch2: iproute2-3.5.0-optflags.patch
+Patch3: iproute2-3.4.0-sharepath.patch
+Patch4: iproute2-2.6.31-tc_modules.patch
+Patch5: iproute2-2.6.29-IPPROTO_IP_for_SA.patch
+Patch6: iproute2-example-cbq-service.patch
+Patch7: iproute2-2.6.35-print-route.patch
+Patch8: iproute2-2.6.39-create-peer-veth-without-a-name.patch
+Patch9: iproute2-2.6.39-lnstat-dump-to-stdout.patch
+Patch10: iproute2-2.6.38-noarpd.patch
 License: GPLv2+
 BuildRequires: flex  psutils db4-devel bison
 # introduction new iptables (xtables) which broke ipt
@@ -32,9 +38,16 @@ The iproute documentation contains howtos and examples of settings.
 
 %prep
 %setup -q -n iproute2-%{version}
-%patch4 -p1 -b .seg
-%patch5 -p1 -b .share
-%patch6 -p1 -b .noarpd
+%patch1 -p1 -b .kernel
+%patch2 -p1 -b .opt_flags
+%patch3 -p1 -b .share
+%patch4 -p1 -b .ipt
+%patch5 -p1 -b .ipproto
+%patch6 -p1 -b .fix_cbq
+%patch7 -p1 -b .print-route
+%patch8 -p1 -b .peer-veth-without-name
+%patch9 -p1 -b .lnstat-dump-to-stdout
+%patch10 -p1 -b .noarpd
 
 %build
 export LIBDIR=/%{_libdir}
@@ -95,7 +108,6 @@ EOF
 %defattr(-,root,root,-)
 %doc README README.decnet README.iproute2+tc README.distribution README.lnstat
 %doc examples
-%doc RELNOTES
 %dir %{_sysconfdir}/sysconfig/cbq
 %config(noreplace) %{_sysconfdir}/sysconfig/cbq/*
 

@@ -1,3 +1,6 @@
+* Tue Jan 22 2013 Oleg Girko <ol+mer@infoserver.ru> - 3.7.0
+- Update iproute to version 3.7.0.
+
 * Sun Nov 13 2011 Carsten Munk <carsten@maemo.org> - 2.6.38
 - Drop arpd daemon, we don't have db1.85
 
