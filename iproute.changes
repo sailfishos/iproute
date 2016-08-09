@@ -1,4 +1,4 @@
-* Tue Aug 09 2016 Marko Saukko <marko.saukko@gmail.com> - 3.7.0
+* Tue Aug 09 2016 Marko Saukko <marko.saukko@gmail.com> - 3.7.0-2
 - Fix iproute2-2.6.39-create-peer-veth-without-a-name.patch. Contributes to JB#26160
 
 * Tue Jan 22 2013 Oleg Girko <ol+mer@infoserver.ru> - 3.7.0
