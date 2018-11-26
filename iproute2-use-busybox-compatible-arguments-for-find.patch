@@ -1,0 +1,21 @@
+--- iproute2-3.7.0/examples/cbq.init-v0.7.3.a	2018-11-23 12:07:16.527032531 +0200
++++ iproute2-3.7.0/examples/cbq.init-v0.7.3	2018-11-26 11:09:31.121336994 +0200
+@@ -579,14 +579,14 @@ cbq_show () {
+ ### Check configuration and load DEVICES, DEVFIELDS and CLASSLIST from $1
+ cbq_init () {
+ 	### Get a list of configured classes
+-	CLASSLIST=`find $1 -maxdepth 1 \( -type f -or -type l \) -name 'cbq-*' \
+-		-not -name '*~' -printf "%f\n"| sort`
++	CLASSLIST=`find $1 -maxdepth 1 \( -type f -o -type l \) -name 'cbq-*' \
++		'!' -name '*~' | xargs -r -n1 basename | sort`
+ 	[ -z "$CLASSLIST" ] &&
+ 		cbq_failure "no configuration files found in $1!"
+ 
+ 	### Gather all DEVICE fields from $1/cbq-*
+-	DEVFIELDS=`find $1 -maxdepth 1 \( -type f -or -type l \) -name 'cbq-*' \
+-		  -not -name '*~' | xargs sed -n 's/#.*//; \
++	DEVFIELDS=`find $1 -maxdepth 1 \( -type f -o -type l \) -name 'cbq-*' \
++		  '!' -name '*~' | xargs sed -n 's/#.*//; \
+ 		  s/[[:space:]]//g; /^DEVICE=[^,]*,[^,]*\(,[^,]*\)\?/ \
+ 		  { s/.*=//; p; }'| sort -u`
+ 	[ -z "$DEVFIELDS" ] &&
