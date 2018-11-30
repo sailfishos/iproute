@@ -18,6 +18,7 @@ Patch7: iproute2-2.6.35-print-route.patch
 Patch8: iproute2-2.6.39-create-peer-veth-without-a-name.patch
 Patch9: iproute2-2.6.39-lnstat-dump-to-stdout.patch
 Patch10: iproute2-2.6.38-noarpd.patch
+Patch11: iproute2-use-busybox-compatible-arguments-for-find.patch
 License: GPLv2+
 BuildRequires: flex  psutils db4-devel bison
 # introduction new iptables (xtables) which broke ipt
@@ -48,6 +49,7 @@ The iproute documentation contains howtos and examples of settings.
 %patch8 -p1 -b .peer-veth-without-name
 %patch9 -p1 -b .lnstat-dump-to-stdout
 %patch10 -p1 -b .noarpd
+%patch11 -p1 -b .posix-find
 
 %build
 export LIBDIR=/%{_libdir}
@@ -110,4 +112,3 @@ EOF
 %doc examples
 %dir %{_sysconfdir}/sysconfig/cbq
 %config(noreplace) %{_sysconfdir}/sysconfig/cbq/*
-
