@@ -6,23 +6,23 @@ Name: iproute
 Version: 3.7.0
 Release: 1
 Group: Applications/System
-Source: http://kernel.org/pub/linux/utils/net/%{name}2/%{name}2-%{version}.tar.bz2
-URL:	http://kernel.org/pub/linux/utils/net/%{name}2/
-Patch1: iproute2-3.4.0-kernel.patch
-Patch2: iproute2-3.5.0-optflags.patch
-Patch3: iproute2-3.4.0-sharepath.patch
-Patch4: iproute2-2.6.31-tc_modules.patch
-Patch5: iproute2-2.6.29-IPPROTO_IP_for_SA.patch
-Patch6: iproute2-example-cbq-service.patch
-Patch7: iproute2-2.6.35-print-route.patch
-Patch8: iproute2-2.6.39-create-peer-veth-without-a-name.patch
-Patch9: iproute2-2.6.39-lnstat-dump-to-stdout.patch
+Source0: %{name}-%{version}.tar.xz
+URL:     http://kernel.org/pub/linux/utils/net/%{name}2/
+Patch1:  iproute2-3.4.0-kernel.patch
+Patch2:  iproute2-3.5.0-optflags.patch
+Patch3:  iproute2-3.4.0-sharepath.patch
+Patch4:  iproute2-2.6.31-tc_modules.patch
+Patch5:  iproute2-2.6.29-IPPROTO_IP_for_SA.patch
+Patch6:  iproute2-example-cbq-service.patch
+Patch7:  iproute2-2.6.35-print-route.patch
+Patch8:  iproute2-2.6.39-create-peer-veth-without-a-name.patch
+Patch9:  iproute2-2.6.39-lnstat-dump-to-stdout.patch
 Patch10: iproute2-2.6.38-noarpd.patch
 Patch11: iproute2-use-busybox-compatible-arguments-for-find.patch
 License: GPLv2+
-BuildRequires: flex  psutils db4-devel bison
+BuildRequires: flex psutils db4-devel bison
 # introduction new iptables (xtables) which broke ipt
-Conflicts:      iptables < 1.4.1
+Conflicts:     iptables < 1.4.1
 
 %description
 The iproute package contains networking utilities (ip and rtmon, for
@@ -38,7 +38,7 @@ License: GPLv2+
 The iproute documentation contains howtos and examples of settings.
 
 %prep
-%setup -q -n iproute2-%{version}
+%setup -q -n %{name}-%{version}/upstream
 %patch1 -p1 -b .kernel
 %patch2 -p1 -b .opt_flags
 %patch3 -p1 -b .share
