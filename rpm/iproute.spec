@@ -35,7 +35,7 @@ Group:  Applications/System
 License: GPLv2+
 
 %description doc
-The iproute documentation contains howtos and examples of settings.
+The iproute documentation contains man pages, howtos and examples of settings.
 
 %prep
 %setup -q -n %{name}-%{version}/upstream
@@ -83,6 +83,12 @@ install -d -m 755 $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/cbq
 cp -f etc/iproute2/* $RPM_BUILD_ROOT/%{_sysconfdir}/iproute2
 rm -rf $RPM_BUILD_ROOT/%{_libdir}/debug/*
 
+mkdir -p $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
+install -m 644 -t $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version} \
+	README README.decnet README.iproute2+tc README.distribution \
+        README.lnstat
+cp -r examples $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
+
 #create example avpkt file
 cat <<EOF > $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/cbq/cbq-0000.example
 DEVICE=eth0,10Mbit,1Mbit
@@ -100,7 +106,6 @@ EOF
 %defattr(-,root,root,-)
 %dir %{_sysconfdir}/iproute2
 /sbin/*
-%doc %{_mandir}/man8/*
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/iproute2/*
 %{_sbindir}/*
 %dir %{_datadir}/tc
@@ -108,7 +113,7 @@ EOF
 
 %files doc
 %defattr(-,root,root,-)
-%doc README README.decnet README.iproute2+tc README.distribution README.lnstat
-%doc examples
+%doc %{_docdir}/%{name}-%{version}
+%doc %{_mandir}/man8/*
 %dir %{_sysconfdir}/sysconfig/cbq
 %config(noreplace) %{_sysconfdir}/sysconfig/cbq/*
