@@ -1,0 +1,30 @@
+diff --git a/tc/tc_class.c b/tc/tc_class.c
+index 95bf6156..894a9773 100644
+--- a/tc/tc_class.c
++++ b/tc/tc_class.c
+@@ -25,6 +25,10 @@
+ #include "tc_util.h"
+ #include "tc_common.h"
+ 
++#if __GLIBC__ >= 2 && __GLIBC_MINOR__ >= 26
++#include <stdint.h>
++#endif
++
+ static void usage(void);
+ 
+ static void usage(void)
+diff --git a/tc/tc_core.c b/tc/tc_core.c
+index 9a0ff391..9c4b37c7 100644
+--- a/tc/tc_core.c
++++ b/tc/tc_core.c
+@@ -24,6 +24,10 @@
+ #include "tc_core.h"
+ #include <linux/atm.h>
+ 
++#if __GLIBC__ >= 2 && __GLIBC_MINOR__ >= 26
++#include <stdint.h>
++#endif
++
+ static double tick_in_usec = 1;
+ static double clock_factor = 1;
+ 

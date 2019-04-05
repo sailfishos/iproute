@@ -19,6 +19,7 @@ Patch8:  iproute2-2.6.39-create-peer-veth-without-a-name.patch
 Patch9:  iproute2-2.6.39-lnstat-dump-to-stdout.patch
 Patch10: iproute2-2.6.38-noarpd.patch
 Patch11: iproute2-use-busybox-compatible-arguments-for-find.patch
+Patch12: include-stdint-explicitly.patch
 License: GPLv2+
 BuildRequires: flex psutils db4-devel bison
 # introduction new iptables (xtables) which broke ipt
@@ -50,6 +51,7 @@ The iproute documentation contains man pages, howtos and examples of settings.
 %patch9 -p1 -b .lnstat-dump-to-stdout
 %patch10 -p1 -b .noarpd
 %patch11 -p1 -b .posix-find
+%patch12 -p1
 
 %build
 export LIBDIR=/%{_libdir}
