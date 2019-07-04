@@ -55,7 +55,7 @@ The iproute documentation contains man pages, howtos and examples of settings.
 
 %build
 export LIBDIR=/%{_libdir}
-export IPT_LIB_DIR=/%{_lib}/xtables
+export IPT_LIB_DIR=%{_libdir}/xtables
 %ifnarch %arm
 make %{?jobs:-j%jobs}
 %else
@@ -65,21 +65,20 @@ make
 %install
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
-mkdir -p $RPM_BUILD_ROOT/sbin \
-	$RPM_BUILD_ROOT%{_sbindir} \
+mkdir -p $RPM_BUILD_ROOT%{_sbindir} \
 	$RPM_BUILD_ROOT%{_mandir}/man8 \
 	$RPM_BUILD_ROOT/%{_sysconfdir}/iproute2 \
 	$RPM_BUILD_ROOT%{_datadir}/tc \
 	$RPM_BUILD_ROOT%{_libdir}/tc
 
-install -m 755 ip/ip ip/ifcfg ip/rtmon tc/tc $RPM_BUILD_ROOT/sbin
+install -m 755 ip/ip ip/ifcfg ip/rtmon tc/tc $RPM_BUILD_ROOT%{_sbindir}
 install -m 755 misc/ss misc/nstat misc/rtacct misc/lnstat $RPM_BUILD_ROOT%{_sbindir}
 #netem is static
 install -m 644 netem/normal.dist netem/pareto.dist netem/paretonormal.dist $RPM_BUILD_ROOT%{_datadir}/tc
 install -m 644 man/man8/*.8 $RPM_BUILD_ROOT/%{_mandir}/man8
 rm -r $RPM_BUILD_ROOT/%{_mandir}/man8/ss.8
 iconv -f latin1 -t utf8 < man/man8/ss.8 > $RPM_BUILD_ROOT/%{_mandir}/man8/ss.8
-install -m 755 examples/cbq.init-%{cbq_version} $RPM_BUILD_ROOT/sbin/cbq
+install -m 755 examples/cbq.init-%{cbq_version} $RPM_BUILD_ROOT%{_sbindir}/cbq
 install -d -m 755 $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/cbq
 
 cp -f etc/iproute2/* $RPM_BUILD_ROOT/%{_sysconfdir}/iproute2
@@ -107,7 +106,6 @@ EOF
 %files
 %defattr(-,root,root,-)
 %dir %{_sysconfdir}/iproute2
-/sbin/*
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/iproute2/*
 %{_sbindir}/*
 %dir %{_datadir}/tc
