@@ -108,7 +108,7 @@ EOF
 %defattr(-,root,root,-)
 %dir %{_sysconfdir}/iproute2
 /sbin/*
-%attr(644,root,root) %config(noreplace) %{_sysconfdir}/iproute2/*
+%attr(644,root,root) %config %{_sysconfdir}/iproute2/*
 %{_sbindir}/*
 %dir %{_datadir}/tc
 %{_datadir}/tc/*
@@ -118,4 +118,4 @@ EOF
 %doc %{_docdir}/%{name}-%{version}
 %doc %{_mandir}/man8/*
 %dir %{_sysconfdir}/sysconfig/cbq
-%config(noreplace) %{_sysconfdir}/sysconfig/cbq/*
+%config %{_sysconfdir}/sysconfig/cbq/*
