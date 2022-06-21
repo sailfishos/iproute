@@ -3,7 +3,7 @@ Name: iproute
 Version: 5.15.0
 Release: 1
 Source0: %{name}-%{version}.tar.xz
-URL:     http://kernel.org/pub/linux/utils/net/%{name}2/
+URL:     https://github.com/sailfishos/iproute
 License: GPLv2+
 BuildRequires: flex psutils db4-devel bison
 
