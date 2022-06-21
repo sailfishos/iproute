@@ -7,7 +7,7 @@ Version: 3.7.0
 Release: 1
 Group: Applications/System
 Source0: %{name}-%{version}.tar.xz
-URL:     http://kernel.org/pub/linux/utils/net/%{name}2/
+URL:     https://github.com/sailfishos/iproute
 Patch1:  iproute2-3.4.0-kernel.patch
 Patch2:  iproute2-3.5.0-optflags.patch
 Patch3:  iproute2-3.4.0-sharepath.patch
