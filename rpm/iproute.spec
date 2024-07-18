@@ -1,8 +1,9 @@
 Summary: Advanced IP routing and network device configuration tools
 Name: iproute
-Version: 5.15.0
+Version: 6.9.0
 Release: 1
 Source0: %{name}-%{version}.tar.xz
+Source1: rt_dsfield.deprecated
 URL:     https://github.com/sailfishos/iproute
 License: GPLv2+
 BuildRequires: flex psutils db4-devel bison
@@ -23,6 +24,7 @@ The iproute documentation contains man pages, howtos and examples of settings.
 
 %build
 %configure
+echo -e "\nPREFIX=%{_prefix}\nSBINDIR=%{_sbindir}" >> config.mk
 %make_build
 
 %install
@@ -30,12 +32,13 @@ export SBINDIR='%{_sbindir}'
 export LIBDIR='%{_libdir}'
 %make_install
 
+# append deprecated values to rt_dsfield for compatibility reasons
+cat %{SOURCE1} >>%{buildroot}%{_datadir}/iproute2/rt_dsfield
 
 %files
-%defattr(-,root,root,-)
 %license COPYING
-%dir %{_sysconfdir}/iproute2
-%attr(644,root,root) %config %{_sysconfdir}/iproute2/*
+%dir %{_datadir}/iproute2
+%attr(644,root,root) %config %{_datadir}/iproute2/*
 %{_sbindir}/*
 %dir %{_libdir}/tc/
 %{_libdir}/tc/*
@@ -43,7 +46,6 @@ export LIBDIR='%{_libdir}'
 %exclude %{_includedir}/iproute2/bpf_elf.h
 
 %files doc
-%defattr(-,root,root,-)
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man7/*
 %doc %{_mandir}/man8/*
