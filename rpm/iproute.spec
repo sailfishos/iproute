@@ -6,7 +6,7 @@ Source0: %{name}-%{version}.tar.xz
 Source1: rt_dsfield.deprecated
 URL:     https://github.com/sailfishos/iproute
 License: GPLv2+
-BuildRequires: flex psutils db4-devel bison
+BuildRequires: flex db4-devel bison
 
 %description
 The iproute package contains networking utilities (ip and rtmon, for
